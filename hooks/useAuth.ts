@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { login } from "../api/authApi";
+import { login, logout } from "../api/authApi";
 import { AuthCredentials } from "../types/auth.type";
 import { useRouter } from "expo-router";
 import useStore from "../store";
@@ -17,6 +17,20 @@ export const useLoginMutation = () => {
     onSuccess: (data) => {
       setCredentials(data.token);
       router.replace("(dash)");
+    },
+  });
+};
+
+export const useLogoutMutation = () => {
+  const { clearCredentials } = useStore.getState();
+  const router = useRouter();
+
+  return useMutation({
+    mutationKey: ["logout"],
+    mutationFn: () => logout(),
+    onSuccess: () => {
+      clearCredentials();
+      router.replace("/login");
     },
   });
 };

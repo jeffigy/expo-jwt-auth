@@ -12,8 +12,8 @@ type AuthState = {
 };
 
 type AuthAction = {
-  setCredentials: (token: string, authUser?: any) => void;
-  clearCredentials: () => void;
+  setCredentials: (token: string, authUser?: any) => Promise<void>;
+  clearCredentials: () => Promise<void>;
   setAuthUser: (authUser: any) => void;
   loadAccessToken: () => Promise<void>;
 };
@@ -32,8 +32,8 @@ const createAuthSlice: StateCreator<AuthSlice> = (set) => ({
     await saveAccessToken(token);
     set({ token });
   },
-  clearCredentials: () => {
-    deleteAccessToken();
+  clearCredentials: async () => {
+    await deleteAccessToken();
     set({ token: null });
   },
   setAuthUser: () => {},

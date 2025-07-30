@@ -1,4 +1,12 @@
-import { View, Text, StyleSheet, TextInput, Button } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  Button,
+  Pressable,
+  ActivityIndicator,
+} from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -24,11 +32,15 @@ const LoginScreen = () => {
         onChangeText={setPassword}
       />
 
-      <Button
-        title="Login"
+      <Pressable
         onPress={async () => await login({ email, password })}
         disabled={!email || !password || isPending}
-      />
+        style={styles.button}
+      >
+        {isPending && <ActivityIndicator color={"white"} />}
+
+        <Text style={{ color: "white" }}>Log In</Text>
+      </Pressable>
     </SafeAreaView>
   );
 };
@@ -49,6 +61,8 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   button: {
+    gap: 10,
+    flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#135DA0",
