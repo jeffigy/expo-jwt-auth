@@ -16,3 +16,9 @@ export const login = async ({
     })
   ).data;
 };
+
+export const refresh = async (): Promise<{ token: string }> => {
+  console.log("refreshing...");
+
+  return (await axiosInstance.get(`${API_URL}/api/pub/auth/refresh`)).data;
+};

@@ -15,7 +15,6 @@ export const useLoginMutation = () => {
       console.log("error logging in", error, variables);
     },
     onSuccess: (data) => {
-      console.log({ data });
       setCredentials(data.token);
       router.replace("(dash)");
     },

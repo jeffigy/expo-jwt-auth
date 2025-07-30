@@ -1,20 +1,27 @@
-import { View, Text, FlatList } from "react-native";
-import React from "react";
+import { View, Text, FlatList, ActivityIndicator } from "react-native";
+import React, { useEffect } from "react";
 import { useTheatersQuery } from "../../hooks/useTheaters";
 
 const DashScreen = () => {
-  const { data: theaters, isLoading, isError } = useTheatersQuery();
+  const {
+    data: theaters,
+    isLoading,
+    isError,
+    error,
+    isFetching,
+  } = useTheatersQuery();
 
   if (isLoading) {
     return <Text>Loading...</Text>;
   }
 
   if (isError) {
-    return <Text>Error</Text>;
+    return <Text>{(error.stack, error.name)}</Text>;
   }
 
   return (
     <View>
+      {isFetching && <ActivityIndicator color="black" />}
       <FlatList
         data={theaters}
         renderItem={({ item }) => (

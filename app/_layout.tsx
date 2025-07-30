@@ -2,7 +2,14 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Stack } from "expo-router";
 import useStore from "../store";
 import { useEffect } from "react";
-export const queryClient = new QueryClient({});
+
+export const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchInterval: 1000 * 10,
+    },
+  },
+});
 
 export default function RootLayout() {
   const { loadAccessToken } = useStore();

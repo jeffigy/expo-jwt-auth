@@ -28,8 +28,9 @@ const initialState: AuthState = {
 
 const createAuthSlice: StateCreator<AuthSlice> = (set) => ({
   ...initialState,
-  setCredentials: (token) => {
-    saveAccessToken(token), set({ token });
+  setCredentials: async (token) => {
+    await saveAccessToken(token);
+    set({ token });
   },
   clearCredentials: () => {
     deleteAccessToken();
