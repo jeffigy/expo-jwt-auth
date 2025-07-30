@@ -2,9 +2,11 @@ import { useMutation } from "@tanstack/react-query";
 import { login } from "../api/authApi";
 import { AuthCredentials } from "../types/auth.type";
 import { useRouter } from "expo-router";
+import useStore from "../store";
 
 export const useLoginMutation = () => {
   const router = useRouter();
+  const { setCredentials } = useStore.getState();
 
   return useMutation({
     mutationKey: ["login"],
@@ -13,7 +15,8 @@ export const useLoginMutation = () => {
       console.log("error logging in", error, variables);
     },
     onSuccess: (data) => {
-      console.log(data);
+      console.log({ data });
+      setCredentials(data.token);
       router.replace("(dash)");
     },
   });

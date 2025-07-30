@@ -6,8 +6,8 @@ export const saveAccessToken = async (token: string) => {
   await SecureStore.setItemAsync(ACCESS_TOKEN_KEY, token);
 };
 
-export const getAccessToken = () => {
-  return SecureStore.getItemAsync(ACCESS_TOKEN_KEY);
+export const getAccessToken = async () => {
+  return await SecureStore.getItemAsync(ACCESS_TOKEN_KEY);
 };
 
 export const deleteAccessToken = async () => {
