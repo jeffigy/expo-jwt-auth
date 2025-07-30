@@ -1,9 +1,11 @@
 import { View, Text, StyleSheet, TextInput, Button } from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Link } from "expo-router";
+
+import { useLoginMutation } from "../hooks/useAuth";
 
 const LoginScreen = () => {
+  const { mutateAsync: login, isPending } = useLoginMutation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -21,9 +23,12 @@ const LoginScreen = () => {
         value={password}
         onChangeText={setPassword}
       />
-      <Link href="/(dash)" style={styles.button}>
-        <Button title="Login" onPress={() => {}} color="white" />
-      </Link>
+
+      <Button
+        title="Login"
+        onPress={async () => await login({ email, password })}
+        disabled={!email || !password || isPending}
+      />
     </SafeAreaView>
   );
 };
