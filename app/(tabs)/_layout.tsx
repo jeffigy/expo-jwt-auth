@@ -39,7 +39,11 @@ const DashboardLayout = () => {
           elevation: 0,
           shadowOpacity: 0,
         },
-        headerRight: ({ tintColor }) => <CircleUserRound color={tintColor} />,
+        headerRight: ({ tintColor }) => (
+          <Link href={"(profile)"}>
+            <CircleUserRound color={tintColor} />
+          </Link>
+        ),
       }}
     >
       <Tabs.Screen

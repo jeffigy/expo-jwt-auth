@@ -30,7 +30,7 @@ export const useLogoutMutation = () => {
     mutationFn: () => logout(),
     onSuccess: () => {
       clearCredentials();
-      router.replace("/login");
+      router.replace("/");
     },
   });
 };
