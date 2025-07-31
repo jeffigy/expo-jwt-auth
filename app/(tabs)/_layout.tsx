@@ -1,8 +1,6 @@
-import { View, Text, Pressable, Image } from "react-native";
 import React from "react";
-import { Link, Stack, Tabs } from "expo-router";
+import { Link, Tabs } from "expo-router";
 import {
-  LogOut,
   Calendar,
   BookOpen,
   MessageCircle,
@@ -10,10 +8,9 @@ import {
   Home,
   CircleUserRound,
 } from "lucide-react-native";
-import { useLogoutMutation } from "../../hooks/useAuth";
+import { DrawerToggleButton } from "@react-navigation/drawer";
 
 const DashboardLayout = () => {
-  const { mutateAsync: logout } = useLogoutMutation();
   return (
     <Tabs
       screenOptions={{
@@ -49,19 +46,6 @@ const DashboardLayout = () => {
       <Tabs.Screen
         name="index"
         options={{
-          // headerRight: ({ tintColor }) => (
-          //   <Pressable onPress={() => logout()}>
-          //     <LogOut color={tintColor} size={24} />
-          //   </Pressable>
-          // ),
-
-          // headerLeft: () => (
-          //   <Image
-          //     source={require("../../assets/logo.png")}
-          //     style={{ width: 30, height: 30 }}
-          //   />
-          // ),
-
           tabBarIcon: ({ color }) => <Home color={color} size={25} />,
           headerTitle: "HCCCI",
           tabBarLabel: "",
@@ -79,6 +63,7 @@ const DashboardLayout = () => {
       <Tabs.Screen
         name="subjects"
         options={{
+          headerShown: false,
           tabBarIcon: ({ color }) => <BookOpen color={color} size={25} />,
           headerTitle: "Subjects",
           tabBarLabel: "",

@@ -12,7 +12,7 @@ export const useLoginMutation = () => {
     mutationKey: ["login"],
     mutationFn: (credentials: AuthCredentials) => login(credentials),
     onError: (error, variables) => {
-      console.log("error logging in", error, variables);
+      console.log("error logging in", error.message);
     },
     onSuccess: (data) => {
       setCredentials(data.token);
