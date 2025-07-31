@@ -2,14 +2,9 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Stack } from "expo-router";
 import useStore from "../store";
 import { useEffect } from "react";
+import { SafeAreaView } from "react-native-safe-area-context";
 
-export const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      refetchInterval: 1000 * 10,
-    },
-  },
-});
+export const queryClient = new QueryClient({});
 
 export default function RootLayout() {
   const { loadAccessToken } = useStore();
@@ -20,14 +15,17 @@ export default function RootLayout() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      {/* <SafeAreaView> */}
       <Stack
         screenOptions={{
           headerShown: false,
         }}
       >
         <Stack.Screen name="login" />
-        <Stack.Screen name="(dash)" />
+        <Stack.Screen name="(tabs)" />
+        <Stack.Screen name="(profile)" />
       </Stack>
+      {/* </SafeAreaView> */}
     </QueryClientProvider>
   );
 }

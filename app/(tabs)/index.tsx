@@ -20,7 +20,7 @@ const DashScreen = () => {
   }
 
   return (
-    <View>
+    <View style={{ flex: 1, backgroundColor: "#f9f9f9" }}>
       {isFetching && <ActivityIndicator color="black" />}
       <FlatList
         data={theaters}

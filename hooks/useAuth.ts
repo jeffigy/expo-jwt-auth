@@ -16,7 +16,7 @@ export const useLoginMutation = () => {
     },
     onSuccess: (data) => {
       setCredentials(data.token);
-      router.replace("(dash)");
+      router.replace("(tabs)");
     },
   });
 };

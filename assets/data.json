@@ -1,0 +1,7 @@
+[
+  { "id": "1", "name": "Math", "teacher": "Mr. Smith", "room": "Room 1" },
+  { "id": "2", "name": "English", "teacher": "Ms. Johnson", "room": "Room 2" },
+  { "id": "3", "name": "Science", "teacher": "Mr. Brown", "room": "Room 3" },
+  { "id": "4", "name": "History", "teacher": "Ms. Davis", "room": "Room 4" },
+  { "id": "5", "name": "Art", "teacher": "Mr. Wilson", "room": "Room 5" }
+]
