@@ -1,4 +1,6 @@
-import { Text, View } from "react-native";
+import { Card } from "@/components/ui/card";
+import { Text } from "@/components/ui/text";
+import { View } from "react-native";
 
 export default function Index() {
   return (
@@ -9,7 +11,9 @@ export default function Index() {
         alignItems: "center",
       }}
     >
-      <Text>Edit app/index.tsx to edit this screen.</Text>
+      <Card className="p-20">
+        <Text>Edit app/index.tsx to edit this screen.</Text>
+      </Card>
     </View>
   );
 }
