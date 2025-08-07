@@ -8,30 +8,41 @@ import { ActivityIndicator } from "react-native";
 
 export default function RootLayout() {
   const [isCheckingAuth, setIsCheckingAuth] = useState(true);
-  const { isAuthenticated, token, setCredentials } = useStore();
+
+  // reactive state values
+  const { isAuthenticated } = useStore();
+
+  //  non-reactive actions
+  const { setCredentials, loadAccessToken } = useStore.getState();
+
   const { mutateAsync: refresh, isPending } = useRefreshMutation();
   const router = useRouter();
 
   useEffect(() => {
     let isMounted = true;
 
-    const verifyRefreshToken = async () => {
-      console.log("verifying refresh token");
-      try {
-        const data = await refresh();
-        await setCredentials(data.token);
-      } catch (err) {
-        router.push("/(root)");
-      } finally {
-        if (isMounted) setIsCheckingAuth(false); // Allow rendering to continue
+    const bootstrapAuth = async () => {
+      console.log("⏳ Bootstrapping auth...");
+
+      await loadAccessToken(); // sets token into store
+      const token = useStore.getState().token; // ✅ get latest token after load
+
+      if (!token) {
+        try {
+          const data = await refresh();
+          await setCredentials(data.token);
+          console.log(" Refreshed token and set credentials");
+        } catch (err) {
+          // console.warn(" Refresh token failed", err);
+        } finally {
+          if (isMounted) setIsCheckingAuth(false);
+        }
+      } else {
+        if (isMounted) setIsCheckingAuth(false);
       }
     };
 
-    if (!token) {
-      verifyRefreshToken();
-    } else {
-      setIsCheckingAuth(false);
-    }
+    bootstrapAuth();
 
     return () => {
       isMounted = false;

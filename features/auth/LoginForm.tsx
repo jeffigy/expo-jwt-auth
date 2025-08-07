@@ -69,10 +69,6 @@ const LoginForm = () => {
         {isPending && <ButtonSpinner />}
         <ButtonText>Login</ButtonText>
       </Button>
-
-      <Button variant="link" onPress={() => {}}>
-        <ButtonText>Register</ButtonText>
-      </Button>
     </Box>
   );
 };
