@@ -1,11 +1,13 @@
+import useStore from "@/store";
 import { Link, Tabs } from "expo-router";
 import React from "react";
 
 const TabsLayout = () => {
+  const { authUser } = useStore();
   return (
     <Tabs
       screenOptions={{
-        headerRight: () => <Link href="/profile">Profile</Link>,
+        headerRight: () => <Link href="/profile">{authUser?.name}</Link>,
       }}
     >
       <Tabs.Screen name="index" />

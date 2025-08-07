@@ -52,7 +52,10 @@ const LoginForm = () => {
             onChangeText={setPassword}
             secureTextEntry={showPassword}
           />
-          <InputSlot onPress={() => setShowPassword(!showPassword)}>
+          <InputSlot
+            className="px-5"
+            onPress={() => setShowPassword(!showPassword)}
+          >
             <InputIcon as={showPassword ? EyeIcon : EyeOffIcon} />
           </InputSlot>
         </Input>

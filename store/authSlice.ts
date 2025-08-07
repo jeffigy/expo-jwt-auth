@@ -29,6 +29,8 @@ const initialState: AuthState = {
 const createAuthSlice: StateCreator<AuthSlice> = (set) => ({
   ...initialState,
   setCredentials: async (token) => {
+    console.log("set credential token", token);
+
     await saveAccessToken(token);
     const authUser: any = jwtDecode(token);
     set({ token, authUser: authUser.userInfo, isAuthenticated: true });
@@ -39,6 +41,8 @@ const createAuthSlice: StateCreator<AuthSlice> = (set) => ({
   },
   loadAccessToken: async () => {
     const token = await getAccessToken();
+    console.log(token);
+
     if (token) {
       const authUser: any = jwtDecode(token);
       set({ token, authUser: authUser.userInfo, isAuthenticated: true });
