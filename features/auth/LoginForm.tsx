@@ -22,14 +22,14 @@ const LoginForm = () => {
   };
 
   return (
-    <Box className=" w-full  gap-5">
+    <Box className=" w-full gap-5">
       {isError && (
         <Alert action="error" variant="solid">
           <AlertIcon as={CircleX} />
           <AlertText>{error?.message}</AlertText>
         </Alert>
       )}
-      <FormControl className="px">
+      <FormControl className="">
         <FormControlLabel>
           <FormControlLabelText>Email</FormControlLabelText>
         </FormControlLabel>

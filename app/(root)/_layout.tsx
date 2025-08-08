@@ -2,7 +2,7 @@ import { Center } from "@/components/ui/center";
 import "@/global.css";
 import { useRefreshMutation } from "@/hooks/useAuth";
 import useStore from "@/store";
-import { Stack, useRouter } from "expo-router";
+import { Stack } from "expo-router";
 import { useEffect, useState } from "react";
 import { ActivityIndicator } from "react-native";
 
@@ -16,7 +16,6 @@ export default function RootLayout() {
   const { setCredentials, loadAccessToken } = useStore.getState();
 
   const { mutateAsync: refresh, isPending } = useRefreshMutation();
-  const router = useRouter();
 
   useEffect(() => {
     let isMounted = true;
@@ -33,7 +32,7 @@ export default function RootLayout() {
           await setCredentials(data.token);
           console.log(" Refreshed token and set credentials");
         } catch (err) {
-          // console.warn(" Refresh token failed", err);
+          console.log(" Refresh token failed", err);
         } finally {
           if (isMounted) setIsCheckingAuth(false);
         }
